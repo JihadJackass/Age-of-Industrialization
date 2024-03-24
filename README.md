@@ -1,2 +1,2 @@
-# Age of Industrailization
- Age mod for eu4
+# EU4 Age of Industrialisation
+ Adds a new age after the revolution

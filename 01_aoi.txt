@@ -1,0 +1,308 @@
+
+	#######################################
+	# Age of Industrialization Unique Age #
+	#######################################
+
+age_of_industrialization = {
+	start = 1780
+
+	can_start = {
+		OR = {
+			is_institution_enabled = industrialization
+			OR = { # Revolution has started OR Must eliminate the Revolution to begin Age of Industrialisation
+				AND = {
+					has_first_revolution_started = yes
+					revolution_target_exists = yes
+					is_year = 1777
+				}
+				AND = {
+					has_first_revolution_started = yes
+					revolution_target_exists = no
+				}
+			}
+		}
+	}
+
+	objectives = {
+
+		# 80% of provinces have no autonomy and has at least 40 provinces
+		obj_autonomy = {
+			num_of_owned_provinces_with = {
+				value = 50
+				NOT = {
+					local_autonomy = 1
+				}
+			}
+		}
+
+		obj_progressive = {
+			OR = {
+				AND = {
+					is_female = yes
+					is_emperor = no
+				}
+				AND = {
+					is_emperor = yes
+					is_female = yes
+					allows_female_emperor = yes
+				}
+			}
+		}
+
+		# Has foreign heir, ruler, consort (and has given a foreign consort), or has at least 10 accepted cultures
+
+		obj_multiculturalism = {
+			OR = {
+				AND = {
+					ruler_is_foreigner = yes
+					has_foreign_heir = yes
+				}
+				AND = {
+					has_foreign_consort = yes
+					ruler_consort_marriage_length = 20
+				}
+				num_accepted_cultures = 10
+			}
+
+		}
+
+		# owns one of 3 great projects, or is currently building one of them (must also have at least 50 ducats income - might need balancing later)
+
+		obj_great_project_producer = {
+			OR = {
+				AND = {
+					any_owned_province = {
+						has_construction = great_project
+					}
+					monthly_income = 50
+				}
+				AND = {
+					any_trade_node = {
+						has_most_province_trade_power = ROOT
+					}
+					monthly_income = 40
+				}
+			}
+		}
+
+		# Owns at least 5 buildings of each manufactory-type building requiring a total of 30 manufatories total
+
+		obj_industrial_power = {
+			any_owned_province = {
+				AND = {
+					ROOT = {
+						weapons = 5
+						ramparts = 5
+						impressment_offices = 5
+						state_house = 5
+						soldier_households = 5
+						furnace = 5
+					}
+				}
+			}
+		}
+
+		# Currently controls over 90% of an entire trade node, and has a total income of at least X from the node
+
+		obj_trade_ruler = {
+			home_trade_node = {
+				trade_share = {
+					country = ROOT
+					share = 90
+				}
+			}
+		}
+
+		# HRE size is 0
+
+		obj_dissolution_of_the_holy_roman_empire = {
+			NOT = {
+				hre_size = 1
+			}
+		}
+	}
+
+	abilities = {
+
+		ab_reduced_industrial_costs = {
+			# Reduced cost of manufactory buildings
+			modifier = {
+				build_cost = -0.10
+				build_time = -0.10
+				production_efficiency = 0.05
+				administrative_efficiency = 0.01
+			}
+			ai_will_do = {
+				factor = 10
+			}
+		}
+
+		ab_increased_liberal_agitation = {
+			# +10% AE (this is a debuff) in exchange for -6 unrest and +10% tax increase
+			modifier = { # Debuffs and # Buffs
+				ae_impact = 0.05
+				stability_cost_to_declare_war = 1
+				global_unrest = -2
+				global_tax_modifier = 0.10
+				interest = -1
+				core_creation = -0.1
+			}
+			ai_will_do = {
+				factor = 10
+			}
+		}
+
+		ab_standing_armies = {
+			allow = {
+				is_great_power = yes
+			}
+			modifier = {
+				discipline = 0.01
+				land_morale = 0.01
+				army_tradition_decay = -0.01
+				artillery_fire = 0.01
+				assault_fort_ability = 0.25
+				backrow_artillery_damage = 0.01
+				land_maintenance_modifier = -0.10
+				force_march_free = yes
+				ignore_coring_distance = yes
+				attack_bonus_in_capital_terrain = 1
+			}
+			ai_will_do = {
+				factor = 10
+			}
+		}
+
+		ab_naval_dominance = {
+			allow = {
+				is_great_power = yes
+			}
+			modifier = {
+				naval_morale = 0.01
+				leader_naval_fire = 1
+				leader_naval_manuever = 1
+				leader_naval_shock = 1
+				navy_tradition = 1
+				navy_tradition_decay = -0.01
+				heavy_ship_cost = -0.1
+				global_naval_engagement_modifier = 0.01
+				global_ship_cost = -0.5
+				global_ship_repair = 0.02
+				global_ship_recruit_speed = -0.1
+			}
+			ai_will_do = {
+				factor = 10
+			}
+		}
+
+		ab_subject_integration = {
+			# Liberty desire reductions and annexation/integration speed bonus
+			modifier = {
+				reduced_liberty_desire_on_same_continent = 20
+				liberty_desire_from_subject_development = -0.25
+				diplomatic_annexation_cost = -0.05
+				diplomatic_reputation = 1
+			}
+			ai_will_do = {
+				factor = 10
+			}
+		}
+
+		ab_military_leader = {
+			# Bonuses to the leader as a military general, + 2 all ruler stats?
+			effect = { # Ruler and Advisor to Ruler
+				define_ruler_to_general = {
+					fire = 6
+					shock = 6
+					manuever = 6
+					siege = 4
+				}
+				create_general = {
+					tradition = 100
+					add_fire = 6
+					add_shock = 6
+					add_manuever = 6
+					add_siege = 3
+					culture = ROOT
+				}
+			}
+			modifier = {
+				army_tradition_decay = -0.10
+			}
+			ai_will_do = {
+				factor = 10
+			}
+		}
+
+		ab_embrace_national_pride = {
+			modifier = {
+				state_maintenance_modifier = -0.30
+			}
+			ai_will_do = {
+				factor = 10
+			}
+		}
+
+		# Special
+
+		ab_industrialization_origins = {
+			allow = {
+				tag = GBR
+				tag = ENG
+			}
+			modifier = {
+				build_cost = -0.10
+				build_time = -0.10
+			}
+			ai_will_do = {
+				factor = 100
+			}
+		}
+
+		ab_meiji_restoration = {
+			allow = {
+				tag = JAP
+				tag = ASK
+			}
+			modifier = {
+				land_morale = 0.10
+				discipline = 0.05
+			}
+			ai_will_do = {
+				factor = 100
+			}
+		}
+
+		ab_manifest_destiny = {
+			allow = {
+				tag = USA
+				tag = MEX
+			}
+			modifier = {
+				core_creation = -0.10
+				enemy_core_creation = 0.10
+				warscore_cost_vs_other_religion = -0.10
+			}
+			ai_will_do = {
+				factor = 100
+			}
+		}
+
+		ab_italian_ambition = {
+			allow = {
+				tag = ITA
+				tag = NAP
+				tag = TUS
+				tag = PAP
+			}
+			modifier = {
+				reduced_liberty_desire = 50
+				years_of_nationalism = -10
+				min_autonomy_in_territories = -0.08
+			}
+			ai_will_do = {
+				factor = 100
+			}
+		}
+	}
+}
