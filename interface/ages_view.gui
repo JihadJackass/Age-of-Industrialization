@@ -52,13 +52,13 @@ guiTypes = {
 			iconType = {
 				name ="icon_age_of_absolutism"
 				spriteType = "GFX_icon_age_s"
-				position = { x= 60 y = 22 }
+				position = { x= 55 y = 22 }
 				frame = 3
 				}
 			iconType = {
 				name ="icon_age_of_revolutions"
 				spriteType = "GFX_icon_age_s"
-				position = { x= 100 y = 22 }
+				position = { x= 90 y = 22 }
 				frame = 4
 				}
 		}
@@ -87,13 +87,13 @@ guiTypes = {
 			iconType = {
 				name ="icon_age_of_absolutism"
 				spriteType = "GFX_icon_age_s"
-				position = { x= 60 y = 22 }
+				position = { x= 55 y = 22 }
 				frame = 3
 				}
 			iconType = {
 				name ="icon_age_of_revolutions"
 				spriteType = "GFX_icon_age_s"
-				position = { x= 100 y = 22 }
+				position = { x= 90 y = 22 }
 				frame = 4
 				}
 
@@ -117,7 +117,7 @@ guiTypes = {
 			iconType = {
 				name ="icon_age_of_absolutism"
 				spriteType = "GFX_icon_age_l"
-				position = { x= 60 y = 22 }
+				position = { x= 55 y = 22 }
 				frame = 3
 				}
 			iconType = {
@@ -128,7 +128,7 @@ guiTypes = {
 			iconType = {
 				name ="icon_age_of_revolutions"
 				spriteType = "GFX_icon_age_s"
-				position = { x= 100 y = 22 }
+				position = { x= 90 y = 22 }
 				frame = 4
 				}
 		}
@@ -156,12 +156,12 @@ guiTypes = {
 			iconType = {
 				name ="icon_age_of_absolutism"
 				spriteType = "GFX_icon_age_of_absolutism_g"
-				position = {x= 60 y = 22 }
+				position = {x= 55 y = 22 }
 				}
 			iconType = {
 				name ="icon_age_of_revolutions"
 				spriteType = "GFX_icon_age_l"
-				position = { x= 100 y = 22 }
+				position = { x= 90 y = 22 }
 				frame = 4
 				}
 		}
